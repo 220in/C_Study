@@ -1,0 +1,21 @@
+int main(){
+	// 1. test 라는 문자를 화면에 10번 출력
+	for (int i = 0; i < 10; i++){
+		cout << "test"<< endl;
+	}
+
+	// 2. for문의 i 값을 이용해 화면에 값을 출력
+	for (int i = 0; i < 10; i++){
+
+		cout << "i값은 :" << i << "입니다." << endl;
+
+	}
+
+	// 3. 중첩 for문을 이용한 구구단 출력
+	for (int i = 2; i < 10; i++){
+		for (int j = 1; j < 10; j++){
+			cout << i << "X" << j << "="<< i*j << "\t";
+
+		}
+		cout << endl;
+	}
