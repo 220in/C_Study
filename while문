@@ -1,0 +1,18 @@
+// 1. test 문자 10번 출력
+	int i = 0;
+	while (i < 10){
+		cout << "test" << endl;
+		i++;
+	}
+	
+	// 2. 반복 횟수는 모르지만 특정 조건이 만족될 때 탈출
+	int j = 0;
+	while (true){
+		cout << "값을 입력하세요 : ";
+		cin >> j;
+
+		if (j == 3){
+			cout << "입력한 값이 3입니다."<< endl;
+			break;
+		}
+	}
