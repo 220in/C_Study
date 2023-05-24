@@ -1,0 +1,17 @@
+#include <iostream> // C++ 명령어를 사용하기 위해 반드시 포함 시켜주어야 하는 기본 코드
+using std::cout; // 출력을 할 수있는 명령어 "<<" 기호는 구분자
+using std::cin;  // 입력을 받을 수 있는 명령어 ">>" 기호로 cout 와 반대임
+using std::endl; // 줄바꿈 명령어
+//using => 사용하겠다 , std => 스탠다드 
+using namespace std; // std 라는 이름 공간 안에 있는 것을 전부 사용하겠다.
+
+
+int main()
+{
+	int inputNum = 0;
+	cout << "값을 입력해 주세요 :";
+	cin >> inputNum;
+	cout << "입력한 숫자는 "<< inputNum << " 입니다." << endl;
+
+	return 0;
+}
