@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+
+
+// 함수
+void add(int a, int b, int *sum){
+	
+	*sum = a + b;
+	//*sum의 값을 가져온다는 뜻    ------------------
+}										//			↑
+										//			↑
+int main() {							//			↑
+										//			↑
+	int a = 3, b = 4;					//			↑
+	int sum = 0;						//			↑
+	add(a, b, &sum); // add 함수 호출				↑
+	//&sum은                       ------------------
+	return 0;
+
+	// 포인터 문법
+
+	// 변수 선언시 : 데이터형 + * + 변수명
+	//                      int *arr
+}
