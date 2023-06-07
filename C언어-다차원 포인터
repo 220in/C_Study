@@ -1,0 +1,88 @@
+[다차원 포인터란?]
+- 다차원 포인터 : 간접으로 여러 번 대상을 가리키는 포인터
+- 차원은 '자신이 가리키는 대상'의 개수만큰 증가
+short *p, data = 5;
+p = &data; //포인터 변수 p는 data변수의 주소 값을 기억함
+
+[다차원 포인터 정의하기]
+- 포인터 변수 선언시 * 키워드를 추가할 때마다 차원이 하나씩 증가
+- * 키워드를 두 개 이상 사용한 포인터가 '다차원 포인터'
+- 키워드는 최대 7개 사용 가능
+- 포인터 변수 선언 시 사용한 *키워드 개수만큼 포인터를 사용할 때 * 연산자를 사용 가능
+
+[일반 변수의 한계와 다차원 포인터]
+- 4Byte 크기의 변수라면 포인터 변수가 아니더라도 주소 저장 가능
+short daata = 0;
+int my_ptr = (int)&data; -> data 변수의 주소를 my_ptr에 저장하기 위해 형 변환, 정상적으로 주소가 저장 됨
+==> 일반 변수에도 주소 값을 저장할 수는 있지만 자신이 저장하고 있는 주소에 가서 값을 읽거나 쓸 수 없다.
+
+[2차원 포인터의 선언과 사용]
+- *연산자를 최대 2개까지 사용 가능
+- 2차원 포인터는 주소 이동을 두 번 할 수 있다.
+short **pp; -> 2차원 포인터 변수 p를 선언
+
+[2차원 포인터의 구성]
+short **pp;
+int data = 3;
+pp = (short **)&data; // data의 주소가 2차원 포인터 변수 pp에 저장
+- data 변수의 저장된 일반 숫자 값을 주소로 사용해서 3번지로 이동하여 값을 읽거나 저장하려고 하면 오류 발생
+
+- 2차원 포인터는 1차원 포인터의 주소 값을 저장한다.
+short **pp, *p, data = 3;
+p = &data; // data 변수의 주소 값이 포인터 변수 p에 저장 됨
+pp = &p;   // 1차원 포인터 p의 주소 값이 2차원 포인터 pp에 저장
+**pp = 5;  // data 변수의 값이 3에서 5로 변경됨
+
+
+[2차원 포인터를 사용하여 일반 변수의 값 대입하기]
+#include <stdio.h>
+void main()
+{
+  short data = 3;
+  short *p = &data;
+  sort **pp = &p;
+  printf("Befor Data : %d\n",data);
+  *p = 4;
+  printf("Use *p Data : %d\n",data);
+  **pp = 5;
+  printf("Use data : %d\n",data);
+}
+
+[2차원 포인터가 가리키는 첫 대상이 일반 변수인 경우]
+short **pp, data = 3;
+int my_ptr = (int)&data;
+short **pp = (short**)&my_ptr;
+**pp = 5;
+==> 2차원 포인터 변수가 가진 주소 값의 형식에 상관없이 4바이트 크기를 가지면 그 주소에 있는 변수의 갑을 변경 가능
+
+[2차원 포인터가 가리키는 대상을 동적으로 할당하기]
+- 2차원 포인터는 1차원 포인터의 주소 값을 저장한다.
+short **pp, data = 3;
+pp = (short **)malloc(4);
+*pp = &data; // data 변수의 주소 값을 두 번째 상자에 저장
+**p = 5; // data 변수의 값이 3에서 5로 변경
+pp = (short **)malloc(sizeof(short*)); 
+
+[malloc 함수를 사용하여 2차원 포인터 구조 만들기]
+#include <stdio.h>
+#inclide <malloc.h>
+void main()
+{
+  shot **pp;
+  pp = (short**)malloc(sizeof(short*)): // 4크기로 메모리가 할당
+  *pp = (short *)malloc(sizeof(short)); // 4크기로 메모리가 할당
+  
+  **pp = 10;
+  printf("**pp:%d,**PP");
+
+}
+short **pp = (short**)malloc(3*sizeof(short *)); --> 3*4 : 12바이트 크기로 메모리가 할당 됨
+*pp = (short*)malloc(2 * sizeof(short)); --> 2*2 크기로 메모리가 할당 됨
+
+
+
+
+
+
+
+
