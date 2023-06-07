@@ -1,0 +1,64 @@
+[포인터]
+int addr =0x0000006C;
+- 일반 변수도 주소를 저장할 수 있으나, 저장된 주소의 메모리에 가서 값을 읽거나 저장할 수 있는 기능은 없다.
+- C 언어는 간접 주소 지정 방식으로 동작하는 포인터 문법을 제공
+- 자신이 사용하고 싶은 메모리의 '주소'를 저장하고 있는 메모리가 포인터
+- 포인터 변수는 자료형을 선언하지 않아도 무조건 크기가 4바이트
+short *ptr 
+
+
+!! 변수의 주소는 프로그램이 실행될 때마다 달라지기 때문에 포인터 변수에 주소를 직접 입력하는 것보다 프로그램 안에 선언한 
+다른 변수의 주소를 받아와 사용하는 것이 안전 !!
+---------ex----------
+short birthday -> short형 변수 birthday를 선언
+short *ptr; -> 포인터 변수 선언
+ptr = &birthday -> birthday 변수의 주소를 ptr 변수에 대입
+*ptr = 1042; -> ptr에 저장된 주소에 가서 값 1042를 대입
+
+printf("birthday 변수의 주소는 %p입니다. \n,ptr")
+
+'ptr = ' VS '*ptr = '
+- ptr = : 포인터 변수의 값(가리키는 대상의 주소)이 변경
+- *ptr = : 포인터가 가리키는 대상의 값이 변경
+
+[간접 주소 지정 방식(포인터)으로 변수 값 교환하기]
+#include <studio.h>
+// temp 변수를 이용하여 a와 b의 값을 서로 바꾸는 함수
+void Swap(int *pa, int*pb)
+{
+  int temp = *pa;
+  *pa = *pb;
+  *pb = temp;
+
+}
+
+[포인터 변수의 주소 연산]
+char *p1 = (char*)100; --> p1에 100번지를 저장
+short *p2 = (short*)100; --> p2에 100를 저장
+int *p3 = (int*)100; --> p3에 100를 저장
+double *p4 = (double*)100; --> p4에 100를 저장
+
+[void * 형 포인터]
+- 사용할 메모리의 시작 주소만 알고 끝 주소를 모를 때 void *형 포인터 사용
+int data = 0;
+void *p = &data; -> data의 시작 주소를 저장
+*p = 5; -> 오류발생 대상 메모리의 크기가 정해지지 않음
+============== 아래로 고쳐주기 =============
+*(int*)p = 5; -> 형 변환 문법을 사용하여 대상의 크기를 4바이트로 정함
+
+void MyFunc(void *p,char flag)
+{
+  // flag에 전달된 값에 따라 형 변환하여 전달된 주소에 1을 대입
+  if(flag == 0)*(char *)p = 1; //flag가 0이면 char *형
+  else if(flag == 1)*(short*)p = 1; //flag가 1이면 short *형
+  else *(int *)p = 1; // flag가 2이면 int*형
+}
+void main()
+{
+  short data = 5;
+  // data 변수는 short형이기 때문에 short*를 의미하는 1을 함께 전달
+  MyFunc(&data, 1);
+}
+
+
+
